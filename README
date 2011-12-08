@@ -1,0 +1,22 @@
+I. Compiling the Source For MACOS
+	After Cloning Source on the host
+		1. cd qemu-0.15.0/
+		2. ./configure --disable-sdl --disable-cocoa --disable-darwin-user --target-list=arm-linux-user,armeb-linux-user,arm-softmmu
+		3. make
+		4. sudo make install
+
+Running the Simulator
+	1. Get the compiled binary for mbed.org or compiling it on the host using gcc4mbed configs
+
+	2. Command:
+		qemu-system-arm -M mbed -kernel TestProg.bin
+
+Debugging binaries
+	1. Command:
+		 qemu-system-arm -M mbed -kernel TestProg.bin -s -S
+
+	2. From another terminal
+		arm-none-eabi-gdb(you get proper register information) or gdb
+		(gdb) target remote localhost:1234
+		Start debugging
+	TIP: Uses GCC4MBED when trying to debug because it gives you symbol information
